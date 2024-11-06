@@ -8,16 +8,19 @@ class PatientList(Resource):
         return [{"patient_id": p.patient_id, "patient_name": p.patient_name, "status": p.status} for p in patients], 200
 
     def post(self):
-        data = request.get_json()
-        patient_data = Patient(
-            patient_name=data["patient_name"], 
-            date_of_birth=data["date_of_birth"], 
-            address=data["address"],
-            status=data["status"]
-        )
-        db.session.add(patient_data)
-        db.session.commit()
-        return {"message": "Patient data successfully added", "patient_id": patient_data.patient_id}, 201
+        try:
+            data = request.get_json()
+            patient_data = Patient(
+                patient_name=data["patient_name"], 
+                date_of_birth=data["date_of_birth"], 
+                address=data["address"],
+                status=data["status"]
+            )
+            db.session.add(patient_data)
+            db.session.commit()
+            return {"message": "Patient data successfully added", "patient_id": patient_data.patient_id}, 201
+        except Exception as e:
+            return {"message": str(e)}, 404
 
 class PatientData(Resource):
     def get(self, patient_id):
