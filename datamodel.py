@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class Patient(db.Model):
-    __tablename__ = 'patients'
+    __tablename__ = 'patient'
     
     patient_id = db.Column(db.Integer, primary_key=True)
     patient_name = db.Column(db.String(500), nullable=False)
