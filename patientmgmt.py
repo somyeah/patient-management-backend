@@ -10,7 +10,6 @@ class PatientList(Resource):
     def post(self):
         data = request.get_json()
         patient_data = Patient(
-            patient_id=data["patient_id"], 
             patient_name=data["patient_name"], 
             date_of_birth=data["date_of_birth"], 
             address=data["address"],
