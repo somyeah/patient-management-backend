@@ -10,7 +10,7 @@ app.config.from_object(Config)
 api = Api(app)
 
 db.init_app(app)
-CORS(app)
+CORS(app, origins=["http://localhost:3000"], methods=["GET", "POST", "OPTIONS"], allow_headers=["Content-Type"], supports_credentials=True)
 
 with app.app_context():
     db.create_all()
