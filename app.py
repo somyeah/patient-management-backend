@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_restful import Api
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from config import Config
 from datamodel import db
 from patientmgmt import PatientData, PatientList
@@ -20,10 +20,10 @@ api.add_resource(PatientData, '/api/patients/<int:patient_id>')
 
 @app.after_request
 def after_request(response):
-  response.headers.add('Access-Control-Allow-Origin', '*')
-  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-  return response
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
