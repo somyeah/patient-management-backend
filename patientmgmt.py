@@ -11,7 +11,7 @@ class PatientList(Resource):
         try:
             data = request.get_json()
             patient_data = Patient(
-                patient_name=data["patient_name"], 
+                patient_name=data["name"], 
                 date_of_birth=data["date_of_birth"], 
                 address=data["address"],
                 status=data["status"]
